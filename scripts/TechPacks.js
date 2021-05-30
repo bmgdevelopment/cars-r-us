@@ -13,7 +13,7 @@ export const TechPacks = () => {
 
   const listItems = techPacks.map(techPack => {
     return `<li>
-        <input type="radio" name="techPack" id="techPack_button" value="${techPack.id}"/> ${techPack.package}
+        <input type="radio" name="techPack" id="techPack_button" value="${techPack.id}" /> ${techPack.package}
       </li>`;
   });
 

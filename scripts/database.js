@@ -23,6 +23,11 @@ const database = {
     {id: 3, type: '18-inch Pair Spoke Silver', price: 299.99},
     {id: 4, type: '18-inch Pair Spoke Black', price: 349.99},
   ],
+  vehicles: [
+      {id:1, type: 'Car'},
+      {id:2, type: 'SUV'},
+      {id:3, type: 'Truck'}
+  ],
   orders: [
     // {id: 1, paintColorId: 3, interiorId: 2, techPackId: 4, wheelTypeId: 4}
   ],
@@ -47,6 +52,11 @@ export const getOrders = () => {
     return database.orders.map(order => ({...order}))
 }
 
+//NEW
+export const getVehicles = () => {
+    return database.vehicles.map(vehicle => ({...vehicle}))
+}
+
 //EXPORT SET ID FUNCTIONS FOR ALL SEPERATED ARRAYS
 export const setPaintColor = (id) => {
     return database.orderBuilder.paintColorId = id
@@ -59,6 +69,11 @@ export const setTechPack = (id) => {
 }
 export const setWheelType = (id) => {
     return database.orderBuilder.wheelTypeId = id
+}
+
+//NEW
+export const setVehicle = (id) => {
+    return database.orderBuilder.vehicleId = id
 }
 
 //EXPORT ADDCUSTOMORDER

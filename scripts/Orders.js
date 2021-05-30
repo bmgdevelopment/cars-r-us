@@ -1,9 +1,10 @@
-import { getPaintColors, getInteriors, getTechPacks, getWheelTypes, getOrders } from './database.js';
+import { getPaintColors, getInteriors, getTechPacks, getWheelTypes, getOrders, getVehicles } from './database.js';
 
 const paintColors = getPaintColors();
 const interiors = getInteriors();
 const techPacks = getTechPacks();
 const wheelTypes = getWheelTypes();
+const vehicles = getVehicles();
 
 const buildOrderListItem = order => {
 
@@ -23,10 +24,28 @@ const buildOrderListItem = order => {
     return wheelType.id === order.wheelTypeId;
   });
 
+  const foundVehicle = vehicles.find(vehicle => {
+    return vehicle.id === order.vehicleId;
+  });
+
   let totalCost = foundPaintColor.price + foundInterior.price + foundTechPack.price + foundWheelType.price;
 
-  return `<li>Order #${order.id} will cost a total of $${totalCost}.</li>`;
-//    and includes the paint color is ${foundPaintColor.color}, the interior is ${foundInterior.type}, the technology package is the ${foundTechPack.package} and the wheel type is ${foundWheelType.type}
+  if (foundVehicle.id === 1) {
+    return `<li>
+        Order #${order.id} will cost a total of $${totalCost}
+        </li>`;
+  } else if (foundVehicle.id === 2) {
+    let totalCost2 = (totalCost * 1.5);
+    return `<li>
+    Order #${order.id} will cost a total of $${totalCost2.toFixed(2)}
+    </li>`;
+  } else if (foundVehicle.id === 3) {
+    let totalCost3 = (totalCost * 2.25);
+    return `<li>
+    Order #${order.id} will cost a total of $${totalCost3.toFixed(2)}
+    </li>`;
+  }
+  //   return `<li>Order #${order.id} will cost a total of $${totalCost}.</li>`;
 };
 
 export const Orders = () => {
